@@ -209,7 +209,7 @@ int main(int argc, char **argv){
       show_usage(argv[0]);
       exit(EXIT_SUCCESS);
     case 'v': /* version*/
-      printf("version: 1.02\n");
+      printf("version: 1.10\n");
       exit(EXIT_SUCCESS);
     case 'f': /* file */
       file = optarg;

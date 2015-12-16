@@ -15,10 +15,10 @@
 # Example
 `./adaboost -f <file name> -n <Num. of Classifiers> -d <Dim. of the data>, [-o <out DIR>]`
 where, 
-- <file name> : input file
-- <Num of Classifiers> : Number of Classifiers 
-- <Dim. of the data> : Dimension of the data
-- <out DIR> : (optional) output directory
+- `<file name>` : input file
+- `<Num of Classifiers>` : Number of Classifiers 
+- `<Dim. of the data>` : Dimension of the data
+- `<out DIR>` : (optional) output directory
 
 ```
 $ ./adaboost -f sampledata.tsv -n3 -d4
