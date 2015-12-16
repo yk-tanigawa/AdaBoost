@@ -369,7 +369,7 @@ int main_sub(const char *file,
 
 int show_usage(const char *progName){
   printf("usage:\n\n");
-  printf("example: %s -f %s -n %ld -r %ld, -o %s\n", 
+  printf("example: %s -f %s -n %ld -d %ld, -o %s\n", 
 	 progName,
 	 "<file name>",
 	 3L,
@@ -444,7 +444,7 @@ int main(int argc, char **argv){
       show_usage(argv[0]);
       exit(EXIT_SUCCESS);
     case 'v': /* version*/
-      printf("version: 1.00\n");
+      printf("version: 1.01\n");
       exit(EXIT_SUCCESS);
     case 'f': /* file */
       file = optarg;
