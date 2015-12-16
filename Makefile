@@ -11,7 +11,7 @@ RM = rm -f
 
 all: adaboost
 
-adaboost: adaboost.o
+adaboost: adaboost.o adaboost.h calloc_errchk.h adaboost_io.h
 	$(LD) $(LDFLAGS) -o $@ $^
 
 clean:
