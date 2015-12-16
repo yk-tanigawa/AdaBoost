@@ -10,11 +10,6 @@
 #define F_NAME_LEN 128
 #define BUF_SIZE 4096
 
-#define TP 0
-#define FP 1
-#define FN 2
-#define TN 3
-
 void *calloc_errchk(size_t count,
 		    size_t size,
 		    const char *errmsg){
