@@ -15,6 +15,10 @@ adaboost: adaboost.o
 
 adaboost.o: adaboost.h calloc_errchk.h adaboost_io.h bit_op.h
 
+adaboost.h: calloc_errchk.h bit_op.h
+adaboost_io.h: calloc_errchk.h
+
+
 clean:
 	$(RM) $(OBJS) $(EXEC) *~
 

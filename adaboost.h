@@ -3,6 +3,7 @@
 
 #include <math.h>
 #include "calloc_errchk.h"
+#include "bit_op.h"
 
 void *calloc_errchk(size_t, size_t, const char *);
 
@@ -26,7 +27,7 @@ int adaboost_calloc(const unsigned long T,
   return 0;
 }
 		           	    
-int adaboost_learn(const int **x, 
+int adaboost_learn(const unsigned int **x, 
 		   const int *y,
 		   const unsigned long T,
 		   const unsigned long N,
@@ -65,7 +66,7 @@ int adaboost_learn(const int **x,
       }
       for(i = 0; i < N; i++){
 	for(d = 0; d < dim; d++){
-	  if(x[i][d] != y[i]){
+	  if(get_bit(x[i], d)!= y[i]){
 	    err[d] += p[i];
 	  }
 	}
@@ -102,8 +103,8 @@ int adaboost_learn(const int **x,
     {
       (*beta)[t] = epsilon / (1 - epsilon);
       for(i = 0; i < N; i++){
-	if(((*lernerPred)[t] == 0 && x[i][(*lernerAxis)[t]] == y[i]) ||
-	   ((*lernerPred)[t] == 1 && x[i][(*lernerAxis)[t]] != y[i])){
+	if(((*lernerPred)[t] == 0 && get_bit(x[i], (*lernerAxis)[t]) == y[i]) ||
+	   ((*lernerPred)[t] == 1 && get_bit(x[i], (*lernerAxis)[t]) != y[i])){
 	  w[i] *= (*beta)[t];
 	}
       }
@@ -122,7 +123,7 @@ int adaboost_apply(const unsigned long *lernerAxis,
 		   const double *beta,
 		   const unsigned long T,
 		   const unsigned long N,
-		   const int **x,
+		   const unsigned int **x,
 		   int **pred){
 
   unsigned int i, t;
@@ -136,7 +137,7 @@ int adaboost_apply(const unsigned long *lernerAxis,
   for(i = 0; i < N; i++){
     sum = 0;
     for(t = 0; t < T; t++){
-      if(lernerPred[t] != x[i][lernerAxis[t]]){
+      if(lernerPred[t] != get_bit(x[i], lernerAxis[t])){
 	sum -= log(beta[t]);
       }
     }

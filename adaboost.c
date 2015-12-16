@@ -15,7 +15,7 @@
 
 void *calloc_errchk(size_t, size_t, const char *);
 
-int adaboost_learn(const int **x, 
+int adaboost_learn(const unsigned int **x, 
 		   const int *y,
 		   const unsigned long T,
 		   const unsigned long N,
@@ -29,7 +29,7 @@ int adaboost_apply(const unsigned long *lernerAxis,
 		   const double *beta,
 		   const unsigned long T,
 		   const unsigned long N,
-		   const int **x,
+		   const unsigned int **x,
 		   int **pred);
 
 int main_sub(const char *file,
@@ -40,7 +40,7 @@ int main_sub(const char *file,
   char *outFileNameBuf;
 
   unsigned long dataNum, l, t;
-  int **data;
+  unsigned int **data;
   int *label;
 
   unsigned long *lernerAxis;
@@ -51,7 +51,7 @@ int main_sub(const char *file,
   
   readFeature(file, dim, &label, &data, &dataNum);
 
-  adaboost_learn((const int **)data,  
+  adaboost_learn((const unsigned int **)data,  
 		 (const int *)label,
 		 n, (const unsigned long)dataNum, dim,
 		 &lernerAxis,
@@ -63,11 +63,11 @@ int main_sub(const char *file,
   adaboost_apply((const unsigned long *)lernerAxis, (const int *)lernerPred,
 		 (const double *)beta,
 		 n, (const unsigned long)dataNum, 
-		 (const int **)data,
+		 (const unsigned int **)data,
 		 &pred);
 
   if(outDir == NULL){
-    dump_all(stderr, (const int **)data, (const int *)label, (const int *)pred, dataNum, dim);
+    dump_all(stderr, (const unsigned int **)data, (const int *)label, (const int *)pred, dataNum, dim);
   }else{
     outFileNameBuf = calloc_errchk(F_NAME_LEN, sizeof(char), "calloc outFileNameBuf");
     /* dump all */
@@ -77,7 +77,7 @@ int main_sub(const char *file,
 	fprintf(stderr, "error fpotn %s\n%s\n",
 		outFileNameBuf, strerror(errno));
       }
-      dump_all(fp, (const int **)data, (const int *)label, (const int *)pred, dataNum, dim);
+      dump_all(fp, (const unsigned int **)data, (const int *)label, (const int *)pred, dataNum, dim);
       fclose(fp);
     }
     /* lerned model : axis */

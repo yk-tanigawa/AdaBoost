@@ -9,15 +9,24 @@ inline unsigned int get_bit(const unsigned int *data,
 }
 
 
+int show_bit_pattern(const unsigned int n){
+  unsigned long i;
+  for(i = 0; i < 8 * sizeof(unsigned int); i++){
+    printf("%d", get_bit(&n, i));
+  }
+  return 0;
+}
+
 int get_bit_test(){
   int i;
   unsigned int xi[2];
   xi[0] = 3;
   xi[1] = 15 << 10;
 
-  printf("%ld\n", sizeof(unsigned int));
-  for(i = 0; i < sizeof(unsigned int) * 8 * 2; i++){
-    printf("%d", get_bit(xi, i));
+  printf("sizeof(unsigned int) : %ld\n", sizeof(unsigned int));
+
+  for(i = 0; i < 2; i++){
+    show_bit_pattern(xi[i]);
   }
   printf("\n");
 
