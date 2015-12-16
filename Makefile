@@ -8,11 +8,12 @@ DEPS = $(SRCS:.c=.dep)
 EXEC = $(SRCS:.c=)
 RM = rm -f
 
+all: $(EXEC)
 
-all: adaboost
-
-adaboost: adaboost.o adaboost.h calloc_errchk.h adaboost_io.h
+adaboost: adaboost.o
 	$(LD) $(LDFLAGS) -o $@ $^
+
+adaboost.o: adaboost.h calloc_errchk.h adaboost_io.h bit_op.h
 
 clean:
 	$(RM) $(OBJS) $(EXEC) *~

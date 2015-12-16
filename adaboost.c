@@ -11,6 +11,7 @@
 #include "calloc_errchk.h"
 #include "adaboost.h"
 #include "adaboost_io.h"
+#include "bit_op.h"
 
 void *calloc_errchk(size_t, size_t, const char *);
 
@@ -184,7 +185,7 @@ int check_params(const char *file,
   return 0;
 }
 
-
+#if 1
 int main(int argc, char **argv){
   char *file = NULL, *outDir = NULL;
   unsigned long d = 0, n = 0;
@@ -231,3 +232,11 @@ int main(int argc, char **argv){
   return 0;
 }
 
+#endif
+
+#if 0
+int main(void){
+  get_bit_test();
+  return 0;
+}
+#endif
